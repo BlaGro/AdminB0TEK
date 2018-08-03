@@ -18,6 +18,10 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
+  if(cmd === `${prefix}typowy-frost`){
+    return message.channel.send("https://cdn.discordapp.com/attachments/473083116731498501/475008357908873228/unknown.png")
+  }
+
   if(message.content === "!"){
     return message.channel.send("Nie drzyj mordy ludzie śpią!")
   }
@@ -111,7 +115,6 @@ bot.on("message", async message => {
     .addField("ab!creditsy - Czyli ogólnie podziękowania itd")
     .addField("ab!propozycja <tekst> - Zaproponuj coś do wykorzystania na serwerze, wymaga kanału #propozycje")
     .addField("ab!zapros - Zapros mnie na twój serwer")
-    .addField("! - Bot cie upomina")
     .addField("Reszta wkrótce :)")
     message.author.send(embed);
     return message.channel.send("Wysłano liste komend na prywatną wiadomość")
