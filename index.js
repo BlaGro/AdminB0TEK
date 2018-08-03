@@ -18,6 +18,20 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
+  if(cmd === `${prefix}rozmowa`){
+
+    let embed = new Discord.RichEmbed()
+    .setDescription("Typowa rozmowa polaka z anglikiem")
+    .setColor("#4286f4")
+    .addField("Anglik: What's your name?")
+    .addField("Polak: Zamknij ryj")
+    .addField("Anglik: What?")
+    .addField("Polak: Zamknij dupe")
+    .addField("Anglik: Oh. It's you DanielMagical?")
+    message.channel.send(embed);
+    return message.channel.send("Wysyłam...")
+  }
+
   if(cmd === `${prefix}zapros`){
 
     let embed = new Discord.RichEmbed()
