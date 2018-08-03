@@ -17,28 +17,6 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
-  
-  if(cmd === `${prefix}sprawdz`){
-
-  let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if(!rUser) return message.channel.send("Nie znaleziono użytkownika");
-  let reason = args.join(" ")
-
-  let reportEmbed = new Discord.RichEmbed()
-  .setDescription("Sprawdzanie")
-  .setColor("#f4aa42")
-  .addField("Sprawdzany użytkownik", `${rUser} z ID ${rUser.id}`)
-  .addField("Jest sprawdzany ponieważ", reason)
-  .addField("Jeżeli jesteś sprawdzany nie słusznie podaj powód ku temu i argumenty");
-
-  let reportschannel = message.guild.channels.find(`name`, "sprawdzanie");
-  if(!reportschannel) return message.channel.send("Nie znaleziono kanału #sprawdzanie");
-
-  message.delete().catch(O_o=>{});
-  reporschannel.send(rEmbed);
-  return;
- }
-
 
   if(cmd === `${prefix}zapros`){
 
