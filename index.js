@@ -20,22 +20,22 @@ bot.on("message", async message => {
   
   if(cmd === `${prefix}sprawdz`){
 
-  let cUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if(!cUser) return message.channel.send("Nie znaleziono użytkownika");
+  let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if(!rUser) return message.channel.send("Nie znaleziono użytkownika");
   let reason = args.join(" ")
 
-  let checkEmbed = new Discord.RichEmbed()
+  let reportEmbed = new Discord.RichEmbed()
   .setDescription("Sprawdzanie")
   .setColor("#f4aa42")
-  .addField("Sprawdzany użytkownik", `${cUser} z ID ${cUser.id}`)
+  .addField("Sprawdzany użytkownik", `${rUser} z ID ${rUser.id}`)
   .addField("Jest sprawdzany ponieważ", reason)
   .addField("Jeżeli jesteś sprawdzany nie słusznie podaj powód ku temu i argumenty");
 
-  let checkschannel = message.guild.channels.find(`name`, "sprawdzanie");
-  if(!checkschannel) return message.channel.send("Nie znaleziono kanału #sprawdzanie");
+  let reportschannel = message.guild.channels.find(`name`, "sprawdzanie");
+  if(!reportschannel) return message.channel.send("Nie znaleziono kanału #sprawdzanie");
 
   message.delete().catch(O_o=>{});
-  checkschannel.send(embed);
+  reporschannel.send(embed);
   return;
  }
 
