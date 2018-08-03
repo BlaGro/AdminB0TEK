@@ -18,6 +18,10 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
+  if(message.content === "!"){
+    return message.channel.send("Nie drzyj mordy ludzie śpią!")
+  }
+
   if(cmd === `${prefix}rozmowa`){
 
     let embed = new Discord.RichEmbed()
@@ -107,7 +111,7 @@ bot.on("message", async message => {
     .addField("ab!creditsy - Czyli ogólnie podziękowania itd")
     .addField("ab!propozycja <tekst> - Zaproponuj coś do wykorzystania na serwerze, wymaga kanału #propozycje")
     .addField("ab!zapros - Zapros mnie na twój serwer")
-    .addField("ab!rozmowa - Typowa rozmowa polaka z anglikiem")
+    .addField("! - Bot cie upomina")
     .addField("Reszta wkrótce :)")
     message.author.send(embed);
     return message.channel.send("Wysłano liste komend na prywatną wiadomość")
