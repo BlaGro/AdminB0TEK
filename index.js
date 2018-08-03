@@ -6,9 +6,7 @@ const bot = new Discord.Client({disableEveryone: true});
 bot.on("ready", async () => {
   console.log(`${bot.user.username} jest online!`);
 
-  bot.user.setActivity("Ładowanie...", {type: "Widze cie"})
-
-  bot.user.setGame("by FrOsT | BETA");
+  bot.user.setActivity("by FrOsT | ab!pomoc po więcej informacjii", {type: "WATCHING"})
 });
 
 bot.on("message", async message => {
@@ -20,6 +18,95 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
+  if(cmd === `${prefix}zapros`){
+
+    let embed = new Discord.RichEmbed()
+    .setDescription("Dodaj mnie!")
+    .setColor("#f74a4d")
+    .addField("Link", `${message.author.username} dodaj mnie tym linkiem > https://discordapp.com/api/oauth2/authorize?client_id=472057997380812801&permissions=0&scope=bot`)
+    message.channel.send(embed);
+  }
+
+  if(cmd === `${prefix}propozycja`){
+
+    let reason = args.join(" ");
+
+    let sEmbed = new Discord.RichEmbed()
+    .setDescription("Propozycja")
+    .setColor("#10ff00")
+    .addField("Użytkownik proponujący", message.author.username)
+    .addField("Treść", reason || "Brak");
+
+    let sRoom = message.guild.channels.find(`name`, "propozycje");
+    if(!sRoom) return message.channel.send("Nie znaleziono kanału #propozycje");
+
+    sRoom.send(sEmbed);
+    return;
+  }
+
+  if(cmd === `${prefix}creditsy`){
+
+    let embed = new Discord.RichEmbed()
+    .setDescription("Credits")
+    .setColor("#f44242")
+    .addField("Twórca ๖̶̶̶ۣۣۜۜ͜ζ͜͡F̵̧̀̀͜r̨̨O̢̨̡͘s̵҉̶͠T")
+    .addField("Podziękowania dla Spyte za chociarz małą pomoc i dla użytkowników z serwera Plexi Development za pomoc w kodowaniu komend")
+    .addField("Może sie coś tutaj jeszcze znajdzie ;)")
+    message.channel.send(embed);
+  }
+
+  if(message.content === "lol"){
+    return message.channel.send("No beka w ciul ci powiem")
+  }
+
+  if(message.content === "Ty no nie wiem"){
+    return message.channel.send("jak tam twoja zrogowaciała niedźwiedzica polarna ~ DeXo Official");
+  }
+
+  if(message.content === "jaki kozak"){
+    return message.channel.send("Aleś ty bystry.");
+  }
+
+  if(cmd === "xd"){
+    return message.channel.send("Nie no ja nie wytrzymam zaraz czy ty kurde nie umiesz napisać XD?");
+  }
+
+  if(cmd === "..."){
+    return message.channel.send("No tak kolejny idiota który używa wielokropka, może jeszcze dodaj milion pięćset sto dziewięćset wykrzykników!");
+  }
+
+  if(cmd === `${prefix}pomoc`){
+
+    let embed = new Discord.RichEmbed()
+    .setDescription("Komendy")
+    .setColor("#26ff0")
+    .addField("ab!powiedz <tekst> - Powiedz coś botem")
+    .addField("ab!report <gracz> <powód> - Zgłoś złamanie regulaminu, wymaga kanału #zgloszenia")
+    .addField("Cześć - Bot ci odpowiada")
+    .addField("ab!bot - Info o bocie")
+    .addField("ab!witam - Witasz sie z botem")
+    .addField("ab!serwer - Info o serwerze")
+    .addField("Ty no nie wiem - Bot dokańcza za ciebie")
+    .addField("xd - Bot cie uczy jak pisać słowo xd")
+    .addField("... - Sam zobaczysz o co chodzi")
+    .addField("jaki kozak - Sam zobaczysz")
+    .addField("lol - Świetnie sie bawisz?")
+    .addField("ab!creditsy - Czyli ogólnie podziękowania itd")
+    .addField("ab!propozycja <tekst> - Zaproponuj coś do wykorzystania na serwerze, wymaga kanału #propozycje")
+    .addField("ab!zapros - Zapros mnie na twój serwer")
+    .addField("Reszta wkrótce :)")
+    message.author.send(embed);
+    return message.channel.send("Wysłano liste komend na prywatną wiadomość")
+  }
+
+  if(cmd === `${prefix}powiedz`){
+
+    const sayMessage = args.join(" ");
+    message.delete().catch(O_o=>{});
+    message.channel.send(sayMessage);
+    return;
+  }
+
   if(cmd === `${prefix}uzytkownik`){
 
     let embed = new Discord.RichEmbed()
@@ -27,9 +114,14 @@ bot.on("message", async message => {
     .setColor("#5b749b")
     .addField("Nazwa użytkownika", message.author.username)
     .addField("Czy jest botem", message.author.bot)
-    .addField("Tag", message.author.tag)
+    .addField("Tag", message.author.tag || "Nie")
     .addField("ID", message.author.id)
     .addField("ID ostatniej wiadomości", message.author.lastMessageID)
+    .addField("Awatar", message.author.avatar)
+    .addField("Discriminator", message.author.discriminator)
+    .addField("Timestamp", message.author.createdTimestamp)
+    .addField("Kanał DM", message.author.dmChannel || "Brak")
+    .addField("Notatka", message.author.note || "Brak")
     message.channel.send(embed);
   }
 
@@ -41,61 +133,18 @@ bot.on("message", async message => {
     .addField("Właściciel", message.guild.owner)
     .addField("Ilość użytkowników", message.guild.memberCount)
     .addField("Serwer", message.guild.name)
+    .addField("Region", message.guild.region)
+    .addField("Lewel weryfikacji", message.guild.verificationLevel)
+    .addField("Pozycja", message.guild.position || "Nie została określona")
+    .addField("Kanał AFK", message.guild.afkChannel || "Brak")
+    .addField("Rola domyślna", message.guild.defaultRole)
+    .addField("Ikonka", message.guild.icon || "Brak")
+    .addField("Domyślny kanał", message.guild.deafaultChannel || "Brak")
     message.channel.send(embed);
   }
 
-  if(cmd === `${prefix}pomoc`){
-
-
-    let embed = new Discord.RichEmbed()
-    .setDescription("Komendy")
-    .setColor("#26ff00")
-    .addField("ab!powiedz <tekst> - Powiedz coś botem")
-    .addField("ab!report <gracz> <powód> - Zgłoś złamanie regulaminu")
-    .addField("ab!wyrzuc <gracz> <powód> - Wyrzucasz gracza za złamanie regulaminu")
-    .addField("Cześć - Bot ci odpowiada")
-    .addField("ab!bot - Info o bocie")
-    .addField("ab!witam - Witasz sie z botem")
-    .addField("ab!serwer - Info o serwerze")
-    message.author.send(embed);
-  }
-
-
   if(cmd === "Cześć"){
     return message.channel.send("Witaj");
-  }
-
-if(cmd === `${prefix}powiedz`){
-  const sayMessage = args.join(" ");
-  message.delete().catch(O_o=>{});
-  message.channel.send(sayMessage);
-
-}
-
-  if(cmd === `${prefix}wyrzuc`){
-
-    let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!kUser) return message.channel.send("Nie znaleziono użytkownika!");
-    let kReason = args.join(" ").slice(22);
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Nope");
-    if(kUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Nie można wyrzucić tego użytkownika");
-
-    let kickEmbed = new Discord.RichEmbed()
-    .setDescription("~Wyrzucanie~")
-    .setColo("#00f6ff")
-    .addField("Wyrzucony użytkownik", `${kUser} z ID: ${kUser.id} `)
-    .addField("Wyrzucony przez", `<@${message.author.id}> z ID ${message.author.id}`)
-    .addField("Wyrzucony w", message.channel)
-    .addField("Czas", message.createdAt)
-    .addField("Powód", kReason);
-
-    let kickChannel = message.guild.channels.find(`name`, "kicki-i-bany");
-    if(!kickChannel) return message.channel.send("Nie znaleziono kanału.");
-
-    message.guild.member(kUser).kick(kReason)
-    kickChannel.send(kickEmbed);
-
-    return;
   }
 
   if(cmd === `${prefix}report`){
@@ -124,7 +173,7 @@ if(cmd === `${prefix}powiedz`){
   }
 
   if(cmd === `${prefix}witam`){
-    return message.channel.send("Witaj");
+    return message.channel.send("No cześć!");
   }
 
   if(cmd === `${prefix}bot`){
@@ -137,7 +186,9 @@ if(cmd === `${prefix}powiedz`){
     .addField("Nazwa bota", bot.user.username)
     .addField("Stworzony", bot.user.createdAt)
     .addField("Id bota", bot.user.id)
-    .addField("Tag bota", bot.user.tag);
+    .addField("Tag bota", bot.user.tag)
+    .addField("Ostatnia wiadomość", bot.user.lastMessage || "Brak ostatniej wiadomości")
+    .addField("Timestamp", bot.user.createdTimestamp || "Brak");
 
     return message.channel.send(botembed);
   }
