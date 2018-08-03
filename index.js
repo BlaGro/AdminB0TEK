@@ -35,7 +35,7 @@ bot.on("message", async message => {
   if(!reportschannel) return message.channel.send("Nie znaleziono kanału #sprawdzanie");
 
   message.delete().catch(O_o=>{});
-  reporschannel.send(embed);
+  reporschannel.send(rEmbed);
   return;
  }
 
