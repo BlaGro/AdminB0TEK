@@ -18,10 +18,6 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
-  if(cmd === `${prefix}typowy-frost`){
-    return message.channel.send("https://cdn.discordapp.com/attachments/473083116731498501/475008357908873228/unknown.png")
-  }
-
   if(message.content === "!"){
     return message.channel.send("Nie drzyj mordy ludzie śpią!")
   }
