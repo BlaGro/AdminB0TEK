@@ -17,6 +17,10 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
+  
+  if(cmd === `${prefix}ciekawostka`){
+    return message.channel.send("Jeżeli wykopiemy dziure do środka ziemi i rzucimy ksążkę, to będzie ona spadać 45 minut", "Czy wiesz, że w ludzkim ciele jest więcej komórek bakterii niż komórek ciała?")
+  }
 
   if(cmd === `${prefix}frost`){
     return message.channel.send("https://cdn.discordapp.com/attachments/473083116731498501/475008357908873228/unknown.png")
