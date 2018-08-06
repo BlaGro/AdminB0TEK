@@ -221,4 +221,4 @@ bot.on("message", async message => {
 
 });
 
-bot.login(preocess.env.BOT_TOKEN)
+bot.login(process.env.BOT_TOKEN)
