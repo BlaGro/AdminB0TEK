@@ -20,7 +20,7 @@ bot.on("message", async message => {
 
   if(message.content === "Potrzebuje pomocy"){
 
-    return message.channel.send(message.author.username "potrzebuje pomocy @WŁAŚCICIEL")
+    return message.channel.send("Pomóż @WŁAŚCICIEL")
     message.guild.channels.find(`name`, "sprawa-do-właściciela")
   }
 
