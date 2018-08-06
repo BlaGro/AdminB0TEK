@@ -20,7 +20,7 @@ bot.on("message", async message => {
 
   if(message.content === "Potrzebuje pomocy"){
 
-    return message.channel.send("Pomóż @WŁAŚCICIEL")
+    return message.channel.send("Pomóż nam Właścicielu!\nPomoc powinna nadejść za kilka minut, jeżeli nie oznacz range która ma ci pomóc")
     message.guild.channels.find(`name`, "sprawa-do-właściciela")
   }
 
