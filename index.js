@@ -18,9 +18,10 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
-  if(channel.name === "sprawa-do-właściciela"){
-    if(message.content === "Potrzebuje pomocy")
-    return message.channel.send(message.author.username, "potrzebuje pomocy @WŁAŚCICIEL")
+  if(message.content === "Potrzebuje pomocy"){
+
+    return message.channel.send(message.author.username "potrzebuje pomocy @WŁAŚCICIEL")
+    message.guild.channels.find(`name`, "sprawa-do-właściciela")
   }
 
   if(cmd === `${prefix}typowy-frost`){
