@@ -1,7 +1,25 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
-
+const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
+bot.commands = new Discord.Collection();
+
+fs.readdir("./commands/", (err, files) => {
+
+  if(err) console.log(err);
+
+  let jsfile = files.filter(f => f.split(".").pop() === "js")
+  if(jsfile.lenght <= 0){
+    console.log("Nie można znaleźć komend.");
+    return;
+  }
+
+  jsfile.forEach((f, i) =>{
+    let props = require(`./commands/${f}`);
+    console.log(`${f} załadowane!`);
+    bot.commands.set(props.help.name, props);    
+  });
+});
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} jest online!`);
@@ -18,9 +36,15 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
+  if(cmd === `${prefix}nazwaKomendy`){}
+
+  if(message.content === "Cześć"){
+    return message.channel.send("Witaj", message.author.username)
+  }
+
   if(message.content === "Potrzebuje pomocy"){
 
-    return message.channel.send("Pomóż nam Właścicielu!\nPomoc powinna nadejść za kilka minut, jeżeli nie oznacz range która ma ci pomóc")
+    return message.channel.send(message.author.username "potrzebuje pomocy @WŁAŚCICIEL")
     message.guild.channels.find(`name`, "sprawa-do-właściciela")
   }
 
