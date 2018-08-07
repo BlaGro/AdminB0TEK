@@ -38,7 +38,6 @@ bot.on("message", async message => {
   
   if(cmd === `${prefix}kolorki`){
     
-    rainbow roles = API abuse
     let role = message.mentions.roles.first() || message.guild.roles.get(args[0]);
     role.setColor("#83f442")
     .then(updated => console.log(`Zmieniono kolor rangi na ${role.color}`))
