@@ -149,6 +149,7 @@ bot.on("message", async message => {
     .addField("ab!creditsy - Czyli ogólnie podziękowania itd")
     .addField("ab!propozycja <tekst> - Zaproponuj coś do wykorzystania na serwerze, wymaga kanału #propozycje")
     .addField("ab!zapros - Zapros mnie na twój serwer")
+    .addField("lenny - Coś fajnego ( ͡° ͜ʖ ͡°)")
     .addField("Reszta wkrótce :)")
     message.author.send(embed);
     return message.channel.send("Wysłano liste komend na prywatną wiadomość")
