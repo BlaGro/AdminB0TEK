@@ -37,6 +37,8 @@ bot.on("message", async message => {
   let args = messageArray.slice(1);
   
   if(cmd === `${prefix}kolorki`){
+    
+    let role = message.guild.roles.find(message.mentions.roles.first() || message.guild.roles.get(args[0]))
     role.setColor("#83f442")
     .then(updated => console.log(`Zmieniono kolor rangi na ${role.color}`))
     .catch(console.error);
