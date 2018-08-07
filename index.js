@@ -36,6 +36,16 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   
+  if(cmd === `${prefix}kolorki`){
+    role.setColor("#83f442")
+    .then(updated => console.log(`Zmieniono kolor rangi na ${role.color}`))
+    .catch(console.error);
+    role.setColor("#f28b41")
+    .then(updated => console.log(`Zmieniono kolor rangi na ${role.color}`))
+    .catch(console.error);
+    return;
+  }
+  
   if(cmd === "lenny"){
     return message.channel.send("( ͡° ͜ʖ ͡°)")
   }
@@ -150,6 +160,7 @@ bot.on("message", async message => {
     .addField("ab!propozycja <tekst> - Zaproponuj coś do wykorzystania na serwerze, wymaga kanału #propozycje")
     .addField("ab!zapros - Zapros mnie na twój serwer")
     .addField("lenny - Coś fajnego ( ͡° ͜ʖ ͡°)")
+    .addField("ab!kolorek - W testach")
     .addField("Reszta wkrótce :)")
     message.author.send(embed);
     return message.channel.send("Wysłano liste komend na prywatną wiadomość")
