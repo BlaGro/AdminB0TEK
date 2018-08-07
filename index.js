@@ -36,6 +36,14 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   
+  if(cmd === `{prefix}ladowanie`){
+    
+    return message.channel.send("|")
+    message.edit("/")
+    .then(msg => console.log(`Nowa wiadomość: ${msg}`))
+    .catch(console.error)
+  }
+  
   if(cmd === `${prefix}kolorki`){
     
     let role = message.mentions.roles.first() || message.guild.roles.get(args[0]);
