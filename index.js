@@ -24,7 +24,7 @@ fs.readdir("./commands/", (err, files) => {
 bot.on("ready", async () => {
   console.log(`${bot.user.username} jest online!`);
 
-  bot.user.setActivity("by FuReK | Trwa tworzenie nowej komendy!", {type: "WATCHING"})
+  bot.user.setActivity("by FuReK | ab!pomoc", {type: "WATCHING"})
 });
 
 bot.on("message", async message => {
