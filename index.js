@@ -36,17 +36,30 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   
-  if(cmd === `${prefix}kolorki`){
-    
-    let role = message.mentions.roles.first() || message.guild.roles.get(args[0]);
-    role.setColor("#83f442")
-    .then(updated => console.log(`Zmieniono kolor rangi na ${role.color}`))
-    .catch(console.error);
-    role.setColor("#f28b41")
-    .then(updated => console.log(`Zmieniono kolor rangi na ${role.color}`))
-    .catch(console.error);
-    return;
-  }
+  const serverStats = {
+  guildID: "475617229241843722",
+  totalUsersID: "476732801287454720",
+  memberCountID: "476732844098715648",
+  botCountID: "476732875329503243"
+};
+bot.on("guildMemberAdd", member => {
+
+  if (member.guild.id !== serverStats.guildID) return;
+
+  bot.channels.get(serverStats.totalUsersID).setName(`🔴 : ${member.guild.memberCount}`);
+  bot.channels.get(serverStats.memberCountID).setName(`🔴 Ludzi: ${member.guild.members.filter(m => !m.user.bot).size}`);
+  bot.channels.get(serverStats.botCountID).setName(`🔴 Botów: ${member.guild.members.filter(m => m.user.bot).size}`);
+
+});
+bot.on("guildMemberRemove", member => {
+
+  if (member.guild.id !== serverStats.guildID) return;
+
+  bot.channels.get(serverStats.totalUsersID).setName(`🔴 Członków: ${member.guild.memberCount}`);
+  bot.channels.get(serverStats.memberCountID).setName(`🔴 Ludzi: ${member.guild.members.filter(m => !m.user.bot).size}`);
+  bot.channels.get(serverStats.botCountID).setName(`🔴 Botów: ${member.guild.members.filter(m => m.user.bot).size}`);
+
+});
   
   if(cmd === "lenny"){
     return message.channel.send("( ͡° ͜ʖ ͡°)")
