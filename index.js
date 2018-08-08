@@ -1,13 +1,30 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
-
+const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
+bot.commands = new Discord.Collection();
+
+fs.readdir("./commands/", (err, files) => {
+
+  if(err) console.log(err);
+
+  let jsfile = files.filter(f => f.split(".").pop() === "js")
+  if(jsfile.lenght <= 0){
+    console.log("Nie można znaleźć komend.");
+    return;
+  }
+
+  jsfile.forEach((f, i) =>{
+    let props = require(`./commands/${f}`);
+    console.log(`${f} załadowane!`);
+    bot.commands.set(props.help.name, props);    
+  });
+});
 
 bot.on("ready", async () => {
-  console.log(`${bot.user.username} jest online`);
+  console.log(`${bot.user.username} jest online!`);
 
-  bot.user.setActivity("co robi Arek | a!pomoc", {type: "WATCHING"});
-
+  bot.user.setActivity("by FuReK | Trwa tworzenie nowej komendy!", {type: "WATCHING"})
 });
 
 bot.on("message", async message => {
@@ -18,31 +35,64 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
+  
+  if(cmd === `${prefix}kolorki`){
+    
+    let role = message.mentions.roles.first() || message.guild.roles.get(args[0]);
+    role.setColor("#83f442")
+    .then(updated => console.log(`Zmieniono kolor rangi na ${role.color}`))
+    .catch(console.error);
+    role.setColor("#f28b41")
+    .then(updated => console.log(`Zmieniono kolor rangi na ${role.color}`))
+    .catch(console.error);
+    return;
+  }
+  
+  if(cmd === "lenny"){
+    return message.channel.send("( ͡° ͜ʖ ͡°)")
+  }
 
-  const serverStats = {
-  guildID: "475617229241843722",
-  totalUsersID: "476689478698663936",
-  memberCountID: "476691559308460032",
-  botCountID: "476691567101476876"
-};
-bot.on("guildMemberAdd", member => {
+  if(cmd === `${prefix}nazwaKomendy`){}
 
-  if (member.guild.id !== serverStats.guildID) return;
+  if(message.content === "Cześć"){
+    return message.channel.send("Witaj", message.author.username)
+  }
 
-  bot.channels.get(serverStats.totalUsersID).setName(`◈ Członków: ${member.guild.memberCount}`);
-  bot.channels.get(serverStats.memberCountID).setName(`◈ Ludzi: ${member.guild.members.filter(m => !m.user.bot).size}`);
-  bot.channels.get(serverStats.botCountID).setName(`◈ Botów: ${member.guild.members.filter(m => m.user.bot).size}`);
+  if(message.content === "Potrzebuje pomocy"){
 
-});
-bot.on("guildMemberRemove", member => {
+    return message.channel.send("Potrzebujemy pomocy @WŁAŚCICIEL")
+    message.guild.channels.find(`name`, "sprawa-do-właściciela")
+  }
 
-  if (member.guild.id !== serverStats.guildID) return;
+  if(cmd === `${prefix}typowy-frost`){
+    return message.channel.send("https://cdn.discordapp.com/attachments/473083116731498501/475008357908873228/unknown.png")
+  }
 
-  bot.channels.get(serverStats.totalUsersID).setName(`◈ Członków: ${member.guild.memberCount}`);
-  bot.channels.get(serverStats.memberCountID).setName(`◈ Ludzi: ${member.guild.members.filter(m => !m.user.bot).size}`);
-  bot.channels.get(serverStats.botCountID).setName(`◈ Botów: ${member.guild.members.filter(m => m.user.bot).size}`);
+  if(message.content === "!"){
+    return message.channel.send("Nie drzyj mordy ludzie śpią!")
+  }
 
-});
+  if(cmd === `${prefix}rozmowa`){
+
+    let embed = new Discord.RichEmbed()
+    .setDescription("Typowa rozmowa polaka z anglikiem")
+    .setColor("#4286f4")
+    .addField("Anglik: What's your name?")
+    .addField("Polak: Zamknij ryj")
+    .addField("Anglik: What?")
+    .addField("Polak: Zamknij dupe")
+    .addField("Anglik: Oh. It's you DanielMagical?")
+    message.channel.send(embed);
+  }
+
+  if(cmd === `${prefix}zapros`){
+
+    let embed = new Discord.RichEmbed()
+    .setDescription("Dodaj mnie!")
+    .setColor("#f74a4d")
+    .addField("Link", `${message.author.username} dodaj mnie tym linkiem > https://discordapp.com/api/oauth2/authorize?client_id=472057997380812801&permissions=0&scope=bot`)
+    message.channel.send(embed);
+  }
 
   if(cmd === `${prefix}propozycja`){
 
@@ -61,77 +111,125 @@ bot.on("guildMemberRemove", member => {
     return;
   }
 
-  if(cmd === `${prefix}wyrzuc`){
+  if(cmd === `${prefix}creditsy`){
 
-    let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!kUser) return message.channel.send("Nie moge znaleźć użytkownika!");
-    let kReason = args.join(" ").slice(22);
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Nope!");
-    if(kUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Ten użytkownik nie może być zbanowany!");
+    let embed = new Discord.RichEmbed()
+    .setDescription("Credits")
+    .setColor("#f44242")
+    .addField("Twórca ๖̶̶̶ۣۣۜۜ͜ζ͜͡F̵̧̀̀͜r̨̨O̢̨̡͘s̵҉̶͠T")
+    .addField("Podziękowania dla Spyte za chociarz małą pomoc i dla użytkowników z serwera Plexi Development za pomoc w kodowaniu komend")
+    .addField("Może sie coś tutaj jeszcze znajdzie ;)")
+    message.channel.send(embed);
+  }
 
-    let kickEmbed = new Discord.RichEmbed()
-    .setDescription("~Wyrzucanie~")
-    .setColor("#bc0000")
-    .addField("Wyrzucony użytkownik", `${kUser} z ID: ${kUser.id}`)
-    .addField("Wyrzucony przez", `<@${message.author.id}> z ID: ${message.author.id}`)
-    .addField("Wyrzucony na kanale", message.channel)
-    .addField("Czas", message.createdAt)
-    .addField("Powód", kReason);
+  if(message.content === "lol"){
+    return message.channel.send("No beka w ciul ci powiem")
+  }
 
-    let incidentchannel = message.guild.channels.find(`name`, "kicki");
-    if(!incidentchannel) return message.channel.send("Nie znaleziono kanału #kicki")
+  if(message.content === "Ty no nie wiem"){
+    return message.channel.send("jak tam twoja zrogowaciała niedźwiedzica polarna ~ DeXo Official");
+  }
 
-    message.guild.member(kUser).ban(kReason);
-    incidentchannel.send(kickEmbed);
+  if(message.content === "jaki kozak"){
+    return message.channel.send("Aleś ty bystry.");
+  }
 
+  if(cmd === "xd"){
+    return message.channel.send("Nie no ja nie wytrzymam zaraz czy ty kurde nie umiesz napisać XD?");
+  }
+
+  if(cmd === "..."){
+    return message.channel.send("No tak kolejny idiota który używa wielokropka, może jeszcze dodaj milion pięćset sto dziewięćset wykrzykników!");
+  }
+
+  if(cmd === `${prefix}pomoc`){
+
+    let embed = new Discord.RichEmbed()
+    .setDescription("Komendy")
+    .setColor("#26ff0")
+    .addField("ab!powiedz <tekst> - Powiedz coś botem")
+    .addField("ab!report <gracz> <powód> - Zgłoś złamanie regulaminu, wymaga kanału #zgloszenia")
+    .addField("Cześć - Bot ci odpowiada")
+    .addField("ab!bot - Info o bocie")
+    .addField("ab!witam - Witasz sie z botem")
+    .addField("ab!serwer - Info o serwerze")
+    .addField("Ty no nie wiem - Bot dokańcza za ciebie")
+    .addField("xd - Bot cie uczy jak pisać słowo xd")
+    .addField("... - Sam zobaczysz o co chodzi")
+    .addField("jaki kozak - Sam zobaczysz")
+    .addField("lol - Świetnie sie bawisz?")
+    .addField("ab!creditsy - Czyli ogólnie podziękowania itd")
+    .addField("ab!propozycja <tekst> - Zaproponuj coś do wykorzystania na serwerze, wymaga kanału #propozycje")
+    .addField("ab!zapros - Zapros mnie na twój serwer")
+    .addField("lenny - Coś fajnego ( ͡° ͜ʖ ͡°)")
+    .addField("ab!kolorek - W testach")
+    .addField("Reszta wkrótce :)")
+    message.author.send(embed);
+    return message.channel.send("Wysłano liste komend na prywatną wiadomość")
+  }
+
+  if(cmd === `${prefix}powiedz`){
+
+    const sayMessage = args.join(" ");
+    message.delete().catch(O_o=>{});
+    message.channel.send(sayMessage);
     return;
   }
 
+  if(cmd === `${prefix}uzytkownik`){
 
-  if(cmd === `${prefix}ban`){
-
-    let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!bUser) return message.channel.send("Nie moge znaleźć użytkownika!");
-    let bReason = args.join(" ").slice(22);
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Nope!");
-    if(bUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Ten użytkownik nie może być zbanowany!");
-
-    let banEmbed = new Discord.RichEmbed()
-    .setDescription("~Ban~")
-    .setColor("#bc0000")
-    .addField("Zbanowany użytkownik", `${bUser} z ID: ${bUser.id}`)
-    .addField("Zbanowany przez", `<@${message.author.id}> z ID: ${message.author.id}`)
-    .addField("Zbanowany na kanale", message.channel)
-    .addField("Czas", message.createdAt)
-    .addField("Powód", bReason);
-
-    let incidentchannel = message.guild.channels.find(`name`, "bany");
-    if(!incidentchannel) return message.channel.send("Nie znaleziono kanału #bany")
-
-    message.guild.member(bUser).ban(bReason);
-    incidentchannel.send(banEmbed);
-
-    return;
+    let embed = new Discord.RichEmbed()
+    .setDescription("Info o użytkowniku")
+    .setColor("#5b749b")
+    .addField("Nazwa użytkownika", message.author.username)
+    .addField("Czy jest botem", message.author.bot)
+    .addField("Tag", message.author.tag || "Nie")
+    .addField("ID", message.author.id)
+    .addField("ID ostatniej wiadomości", message.author.lastMessageID)
+    .addField("Awatar", message.author.avatar)
+    .addField("Discriminator", message.author.discriminator)
+    .addField("Timestamp", message.author.createdTimestamp)
+    .addField("Kanał DM", message.author.dmChannel || "Brak")
+    .addField("Notatka", message.author.note || "Brak")
+    message.channel.send(embed);
   }
 
-  if(cmd === "lenny"){
-    return message.channel.send("( ͡° ͜ʖ ͡°)")
+  if(cmd === `${prefix}serwer`){
+
+    let embed = new Discord.RichEmbed()
+    .setDescription("Info o serwerze")
+    .setColor("#5e0372")
+    .addField("Właściciel", message.guild.owner)
+    .addField("Ilość użytkowników", message.guild.memberCount)
+    .addField("Serwer", message.guild.name)
+    .addField("Region", message.guild.region)
+    .addField("Lewel weryfikacji", message.guild.verificationLevel)
+    .addField("Pozycja", message.guild.position || "Nie została określona")
+    .addField("Kanał AFK", message.guild.afkChannel || "Brak")
+    .addField("Rola domyślna", message.guild.defaultRole)
+    .addField("Ikonka", message.guild.icon || "Brak")
+    .addField("Domyślny kanał", message.guild.deafaultChannel || "Brak")
+    message.channel.send(embed);
   }
 
-  if(cmd === `${prefix}zglos`){
+  if(cmd === "Cześć"){
+    return message.channel.send("Witaj");
+  }
+
+  if(cmd === `${prefix}report`){
 
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!rUser) return message.channel.send("Nie znaleziono użytkownika");
-    let rreason = args.join(" ").slice(22);
+    let reason = args.join(" ").slice(22);
 
     let reportEmbed = new Discord.RichEmbed()
-    .setDescription("Zgloszenie")
-    .setColor("#15f153")
+    .setDescription("Zgloszenia")
+    .setColor("#f44242")
     .addField("Zgłoszony użytkownik", `${rUser} z ID: ${rUser.id}`)
     .addField("Zgłoszony przez", `${message.author} z ID: ${message.author.id}`)
     .addField("Kanał", message.channel)
     .addField("Czas", message.createdAt)
-    .addField("Powód", rreason);
+    .addField("Powód", reason);
 
     let reportschannel = message.guild.channels.find(`name`, "zgloszenia");
     if(!reportschannel) return message.channel.send("Nie znaleziono kanału #zgloszenia");
@@ -143,41 +241,27 @@ bot.on("guildMemberRemove", member => {
     return;
   }
 
-  if(cmd === `${prefix}zapros`){
-
-    let embed = new Discord.RichEmbed()
-    .setDescription("Dodaj mnie na serwer")
-    .setColor("#4286f4")
-    .addField("Dodaj mnie!", `${message.author.username} dodaj mnie tym linkiem https://discordapp.com/api/oauth2/authorize?client_id=475726670049837057&permissions=8&scope=bot`)
-    message.channel.send(embed);
-  }
-
-  if(cmd === `${prefix}pomoc`){
-
-    let embed = new Discord.RichEmbed()
-    .setDescription("Pomocnik")
-    .setColor("#4286f4")
-    .addField("a!bot - Info o bocie")
-    .addField("a!zapros - Zaproś mnie na serwer :)")
-    .addField("a!zglos <uzytkownik> <powód>")
-    .addField("lenny - Coś fajnego ( ͡° ͜ʖ ͡°)")
-    message.author.send(embed);
+  if(cmd === `${prefix}witam`){
+    return message.channel.send("No cześć!");
   }
 
   if(cmd === `${prefix}bot`){
 
     let bicon = bot.user.displayAvatarURL;
-    let embed = new Discord.RichEmbed()
+    let botembed = new Discord.RichEmbed()
     .setDescription("Info o bocie")
-    .setColor("#15f153")
+    .setColor("#0061ff")
+    .setThumbnail(bicon)
     .addField("Nazwa bota", bot.user.username)
-    .addField("Ostatnia wiadomość", bot.user.lastMessage || "Brak")
-    .addField("TAG", bot.user.tag)
-    .addField("ID ostatniej wiadomości", bot.user.lastMessageID || "Brak")
-    .addField("ID Avataru", bot.user.avatar)
-     return message.channel.send(embed);
+    .addField("Stworzony", bot.user.createdAt)
+    .addField("Id bota", bot.user.id)
+    .addField("Tag bota", bot.user.tag)
+    .addField("Ostatnia wiadomość", bot.user.lastMessage || "Brak ostatniej wiadomości")
+    .addField("Timestamp", bot.user.createdTimestamp || "Brak");
+
+    return message.channel.send(botembed);
   }
 
 });
 
-bot.login(process.env.BOT_TOKEN);
+bot.login(process.env.BOT_TOKEN)
