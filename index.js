@@ -36,12 +36,6 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   
-  client.on("guildMemberAdd", member => {
-    const channel = member.guild.channels.find(`name`, "witamy");
-    if(!channel) return;
-    channel.send(`Witaj na serwerze ${guild.name} jesteś ${guild.memberCount} użytkownikiem`)
-  });
-  
   if(cmd === `${prefix}kolorki`){
     
     let role = message.mentions.roles.first() || message.guild.roles.get(args[0]);
