@@ -24,7 +24,7 @@ fs.readdir("./commands/", (err, files) => {
 bot.on("ready", async () => {
   console.log(`${bot.user.username} jest online!`);
 
-  bot.user.setActivity("by FuReK | ab!pomoc po więcej informacjii", {type: "WATCHING"})
+  bot.user.setActivity("by FuReK | Trwa tworzenie nowej komendy!", {type: "WATCHING"})
 });
 
 bot.on("message", async message => {
@@ -35,6 +35,11 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
+  
+  if(cmd === `${prefix}staty`){
+    
+    
+  }
   
   if(cmd === `${prefix}kolorki`){
     
