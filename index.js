@@ -22,8 +22,8 @@ bot.on("message", async message => {
   const serverStats = {
   guildID: "475617229241843722",
   totalUsersID: "476689478698663936",
-  memberCountID: "476689500509175808",
-  botCountID: "476689508956373008"
+  memberCountID: "476691559308460032",
+  botCountID: "476691567101476876"
 };
 bot.on("guildMemberAdd", member => {
 
