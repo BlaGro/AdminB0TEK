@@ -37,8 +37,9 @@ bot.on("message", async message => {
   let args = messageArray.slice(1);
   
   if(cmd === `${prefix}staty`){
+    guild.createChannel(`WSZYSCY > ${guild.memberCount}`, "voice")    
     
-    
+    return;    
   }
   
   if(cmd === `${prefix}kolorki`){
