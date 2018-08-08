@@ -36,10 +36,11 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   
-  if(cmd === `${prefix}staty`){
-    guild.createChannel(`WSZYSCY > ${guild.memberCount}`, "voice").then(console.log).catch(console.error);  
-    return;    
-  }
+  client.on("guildMemberAdd", member => {
+    const channel = member.guild.channels.find(`name`, "witamy");
+    if(!channel) return;
+    channel.send(`Witaj na serwerze ${guild.name} jesteś ${guild.memberCount} użytkownikiem`)
+  });
   
   if(cmd === `${prefix}kolorki`){
     
