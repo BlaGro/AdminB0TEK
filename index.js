@@ -37,7 +37,7 @@ bot.on("message", async message => {
   let args = messageArray.slice(1);
   
   if(cmd === `${prefix}afk`){
-    return user.setName("[AFK]", message.author.username)
+    .setName("[AFK]", message.author.username)
     .then(message.author.setAFK)
   }
   
