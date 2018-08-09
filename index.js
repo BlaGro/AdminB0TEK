@@ -37,7 +37,8 @@ bot.on("message", async message => {
   let args = messageArray.slice(1);
   
   if(message.content.substr === "Głosowanie"){
-    message.react("✅\n❌")
+    return message.react("✅")
+    return message.react("❌")
     
     message.guild.channels.find(`name`, "głosowanie")
   }
