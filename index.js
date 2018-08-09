@@ -25,9 +25,9 @@ fs.readdir("./commands/", (err, files) => {
 
 
 bot.on("ready", async () => {
-  console.log(`${bot.user.username} jest online!`);
+  console.log(`${bot.user.username} jest online na ${bot.guild.size}!`);
 
-  bot.user.setActivity("Na ${bot.guilds.size} | ab!pomoc", {type: "WATCHING"})
+  bot.user.setActivity("by FuReK | ab!pomoc", {type: "WATCHING"})
 });
 
 bot.on("message", async message => {
