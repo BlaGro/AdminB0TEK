@@ -44,6 +44,7 @@ bot.on("message", async message => {
 
   if(message.content === "Cześć"){
     return message.channel.send("Witaj", message.author.username)
+    message.react("✔")
   }
 
   if(message.content === "Potrzebuje pomocy"){
