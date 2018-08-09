@@ -36,14 +36,8 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   
-  if(cmd === `${prefix}afk`){
-    message.member.setNickname("[AFK]")
-    .then(message.author.setAFK)
-  }
-  
   if(message.content.substr === "Głosowanie"){
-    message.react("✅")
-    message.react("❌")
+    message.react("✅\n❌")
     
     message.guild.channels.find(`name`, "głosowanie")
   }
