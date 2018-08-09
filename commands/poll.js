@@ -15,7 +15,7 @@ exports.run = async (client, message, args, tools) => {
     .setTitle('Stworzone przez ${message.author.username}');
 
     let msg = await message.channel.send(embed);
-    await msg react('✅')
+    await msg.react('✅')
     await msg.react('❌')
     message.delete({timeout: 1000});
 }
