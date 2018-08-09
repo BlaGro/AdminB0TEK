@@ -2,29 +2,32 @@ const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
-bot.commands = new Discord.Collection();
 
-fs.readdir("./commands/", (err, files) => {
+bot.comamnds = new Discord.Collection();
+
+fs.reddir("./commands/", (err, files) => {
 
   if(err) console.log(err);
 
-  let jsfile = files.filter(f => f.split(".").pop() === "js")
+  let jsfile = files.filter(f, => f.split(".").pop() === "js")
   if(jsfile.lenght <= 0){
-    console.log("Nie można znaleźć komend.");
+    console.log("Nie znaleziono komend")
     return;
   }
-
+  
   jsfile.forEach((f, i) =>{
     let props = require(`./commands/${f}`);
-    console.log(`${f} załadowane!`);
-    bot.commands.set(props.help.name, props);    
+    console.log(`Załadowano ${f}`);
+    bot.comamnds.set(props.help.name, props)
   });
+
 });
+
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} jest online!`);
 
-  bot.user.setActivity("by FuReK | ab!pomoc", {type: "WATCHING"})
+  bot.user.setActivity("Na ${bot.guilds.size} | ab!pomoc", {type: "WATCHING"})
 });
 
 bot.on("message", async message => {
@@ -35,6 +38,9 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
+
+  let commandfile = bot.commands.get(cmd.slice(prefix.lenght));
+  if(commandfile) commandfile.run(bot,message,args);
   
   if(message.content === "Głosowanie"){
     message.react("✅").then(message.react("❌"))
