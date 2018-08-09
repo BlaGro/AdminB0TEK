@@ -35,6 +35,13 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
+  
+  if(message.content.substr === "Głosowanie"){
+    message.react("✅");
+    message.react("❌");
+    
+    message.guild.channels.find(`name`, "głosowanie")
+  }
     
   if(cmd === "lenny"){
     return message.channel.send("( ͡° ͜ʖ ͡°)")
