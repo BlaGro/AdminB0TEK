@@ -36,6 +36,12 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   
+  message.channel.send(embed).then(i => i.delete({
+    timeout: 900000
+    .then(user.setName("[AFK]", message.author.username))
+    if(message.content === message).then(user.setName(" "))
+  }))
+  
   if(message.content.substr === "Głosowanie"){
     message.react("✅")
     message.react("❌")
