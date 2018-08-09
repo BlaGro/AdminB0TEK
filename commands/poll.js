@@ -21,5 +21,5 @@ exports.run = async (client, message, args, tools) => {
 }
 
 module.exports.help = {
-    name: "polls"
+  name: "polls"
 }
