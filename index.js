@@ -158,7 +158,6 @@ bot.on("message", async message => {
     .addField("ab!kolorek - W testach")
     .addField("Reszta wkrótce :)")
     message.author.send(embed);
-    message.react("👌")
     return message.channel.send("Wysłano liste komend na prywatną wiadomość")
   }
 
