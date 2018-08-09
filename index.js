@@ -47,7 +47,7 @@ bot.on("message", async message => {
   if(cmd === `${prefix}nazwaKomendy`){}
 
   if(message.content === "Cześć"){
-    message.react("🇼").then(message.react("🇮").then(message.react("🇹").then(message.react("🇦").then(message.react("🇯")))))
+    return message.channel.send("Witaj")
   }
 
   if(message.content === "Potrzebuje pomocy"){
