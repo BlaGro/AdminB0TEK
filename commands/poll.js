@@ -19,3 +19,7 @@ exports.run = async (client, message, args, tools) => {
     await msg.react('❌')
     message.delete({timeout: 1000});
 }
+
+module.exports.help = {
+    name: "polls"
+}
