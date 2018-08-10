@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
 
     if(!message.member.hasPermission("KICK_MEMBERS")) return errors.noPerms(message, "KICK_MEMBERS");
     if(args[0] == "help"){
-      message.reply("Usage: !kick <user> <reason>");
+      message.reply("Usage: !kick <gracz> <powód>");
       return;
     }
     let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -16,14 +16,14 @@ module.exports.run = async (bot, message, args) => {
     let kickEmbed = new Discord.RichEmbed()
     .setDescription("~Kick~")
     .setColor("#e56b00")
-    .addField("Kicked User", `${kUser} with ID ${kUser.id}`)
-    .addField("Kicked By", `<@${message.author.id}> with ID ${message.author.id}`)
-    .addField("Kicked In", message.channel)
-    .addField("Tiime", message.createdAt)
-    .addField("Reason", kReason);
+    .addField("Wyrzucony Użytkownik", `${kUser} z ID ${kUser.id}`)
+    .addField("Wyrzucony przez", `<@${message.author.id}> z ID ${message.author.id}`)
+    .addField("Wyrzucony w", message.channel)
+    .addField("Czas", message.createdAt.format(DD.MM.YYYY))
+    .addField("Powód", kReason);
 
-    let kickChannel = message.guild.channels.find(`name`, "incidents");
-    if(!kickChannel) return message.channel.send("Can't find incidents channel.");
+    let kickChannel = message.guild.channels.find(`name`, "kicki");
+    if(!kickChannel) return message.channel.send("Nie znaleziono kanału #kicki");
 
     message.guild.member(kUser).kick(kReason);
     kickChannel.send(kickEmbed);
