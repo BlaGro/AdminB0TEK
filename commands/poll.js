@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-module.exports.run = async (client, message, args. tools) => {
+module.exports.run = async (client, message, args, tools) => {
 
     if(!message.member.roles.find(r => r.name === 'Moderator')) return message.channel.send('Ta komenda wymaga rangi: Moderator');
 
@@ -18,8 +18,8 @@ module.exports.run = async (client, message, args. tools) => {
     await msg.react('✅')
     await msg.react('❌')
     message.delete({timeout: 1000});
-}
+};
 
 module.exports.help = {
   name: "poll"
-}
+};
