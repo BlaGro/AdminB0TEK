@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const errors = require("../utils/errors.js");
 
 module.exports.run = async (bot, message, args) => {
 
@@ -9,19 +8,19 @@ module.exports.run = async (bot, message, args) => {
     return;
   }
   let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if(!rMember) return message.reply("Couldn't find that user, yo.");
+  if(!rMember) return message.reply("Nie można znaleźć tego użytkownika.");
   let role = args.join(" ").slice(22);
-  if(!role) return message.reply("Specify a role!");
+  if(!role) return message.reply("Określ role!");
   let gRole = message.guild.roles.find(`name`, role);
-  if(!gRole) return message.reply("Couldn't find that role.");
+  if(!gRole) return message.reply("Nie można znaleźć tej roli.");
 
-  if(!rMember.roles.has(gRole.id)) return message.reply("They don't have that role.");
+  if(!rMember.roles.has(gRole.id)) return message.reply("Nie posiadasz tej roli");
   await(rMember.removeRole(gRole.id));
 
   try{
-    await rMember.send(`RIP, you lost the ${gRole.name} role.`)
+    await rMember.send(`RIP, zostawmy znicz, odebrano ci role ${gRole.name}.`)
   }catch(e){
-    message.channel.send(`RIP to <@${rMember.id}>, We removed ${gRole.name} from them. We tried to DM them, but their DMs are locked.`)
+    message.channel.send(`Znicz dla <@${rMember.id}>, zabrano mu role ${gRole.name}. Próbuje napisać na DM ale wyłączono tą opcje.`)
   }
 }
 
