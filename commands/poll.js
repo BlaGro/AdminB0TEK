@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (client, message, args. tools) => {
 
     if(!message.member.roles.find(r => r.name === 'Moderator')) return message.channel.send('Ta komenda wymaga rangi: Moderator');
 
