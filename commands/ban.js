@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     message.delete();
     if(!message.member.hasPermission("BAN_MEMBERS")) return errors.noPerms(message, "BAN_MEMBERS");
     if(args[0] == "help"){
-      message.reply("Usage: !ban <user> <reason>");
+      message.reply("Usage: !ban <gracz> <powód>");
       return;
     }
     let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -18,14 +18,14 @@ module.exports.run = async (bot, message, args) => {
     let banEmbed = new Discord.RichEmbed()
     .setDescription("~Ban~")
     .setColor("#bc0000")
-    .addField("Banned User", `${bUser} with ID ${bUser.id}`)
-    .addField("Banned By", `<@${message.author.id}> with ID ${message.author.id}`)
-    .addField("Banned In", message.channel)
-    .addField("Time", message.createdAt)
-    .addField("Reason", bReason);
+    .addField("Zbanowany użytkownik", `${bUser} z ID ${bUser.id}`)
+    .addField("Zbanowany przez", `<@${message.author.id}> z ID ${message.author.id}`)
+    .addField("Zbanowany w", message.channel)
+    .addField("Czas", message.createdAt.format(DD.MM.YYYY))
+    .addField("Powód", bReason);
 
-    let incidentchannel = message.guild.channels.find(`name`, "incidents");
-    if(!incidentchannel) return message.channel.send("Can't find incidents channel.");
+    let incidentchannel = message.guild.channels.find(`name`, "bany");
+    if(!incidentchannel) return message.channel.send("Nie znaleziono kanału #bany.");
 
     message.guild.member(bUser).ban(bReason);
     incidentchannel.send(banEmbed);
