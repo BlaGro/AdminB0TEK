@@ -114,7 +114,7 @@ bot.on("message", async message => {
     .setDescription("Credits")
     .setColor("#f44242")
     .addField("Twórca ๖̶̶̶ۣۣۜۜ͜ζ͜͡F̵̧̀̀͜r̨̨O̢̨̡͘s̵҉̶͠T")
-    .addField("Podziękowania dla Spyte za chociarz małą pomoc i dla użytkowników z serwera Plexi Development za pomoc w kodowaniu komend")
+    .addField("Podziękowania dla Spyte za chociaż małą pomoc i dla użytkownika ๖̶̶̶ζ͜͡Kociak 💞 za pomoc w komendach")
     .addField("Może sie coś tutaj jeszcze znajdzie ;)")
     message.channel.send(embed);
   }
