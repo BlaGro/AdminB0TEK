@@ -2,8 +2,8 @@ const Discord = require("discord.js");
 
 module.exports.run = async(bot, message, args) => {
 
-  if (!message.member.roles.find(r => r.name === "Administracja")) return message.channel.send("Nie posiadasz roli: Administracja");
-  if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Nie masz permisji do użycia komendy ``głosowanie``");
+  if (!message.member.roles.find(r => r.name === "Moderator")) return message.channel.send("Nie posiadasz roli: Moderator");
+  if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Nie masz permisji do użycia komendy ``głosowanie``, musisz posiadać permissie Zarządzanie wiadomościami");
 
   if (!args[0]) return message.channel.send("Prawidłowe użycie to: <głosowanie [pytanie]");
 
