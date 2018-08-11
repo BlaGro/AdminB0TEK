@@ -46,7 +46,7 @@ bot.on("message", async message => {
     let embed = new Discord.RichEmbed()
     .setDescription("Wojna na poduszki")
     .setColor("#ffffff")
-    .addField("Winowajca", osobaUser)
+    .addField("Winowajca", osoba)
     .addField("Uderzający poduszką", message.author.username)
     message.channel.send(embed);
   }
