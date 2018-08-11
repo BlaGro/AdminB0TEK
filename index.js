@@ -23,7 +23,6 @@ fs.readdir("./commands/", (err, files) => {
 
 });
 
-
 bot.on("ready", async () => {
   console.log(`${bot.user.username} jest online!`);
 
@@ -41,6 +40,16 @@ bot.on("message", async message => {
 
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if(commandfile) commandfile.run(bot,message,args);
+
+  if(cmd === `${prefix}rzuc`){
+    let osoba = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    let embed = new Discord.RichEmbed()
+    .setDescription("Wojna na poduszki")
+    .setColor("#ffffff")
+    .addField("Winowajca", osobaUser)
+    .addField("Uderzający poduszką", message.author.username)
+    message.channel.send(embed);
+  }
   
   if(message.content === "Głosowanie"){
     message.react("✅").then(message.react("❌"))
