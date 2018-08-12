@@ -51,7 +51,7 @@ bot.on("message", async message => {
     .setColor("#ffffff")
     .addField("Winowajca", osoba)
     .addField("Uderzający poduszką", message.author.username)
-    .addField("Hmm", "Ciekawe o co poszło", bicon)
+    .addField("Ciekawe o co poszło", bicon)
     message.channel.send(embed);
   }
 
