@@ -164,7 +164,7 @@ bot.on("message", async message => {
     .addField("...", "Sam zobaczysz o co chodzi")
     .addField("jaki kozak", "Sam zobaczysz")
     .addField("lol", "Świetnie sie bawisz?")
-    .addField("ab!creditsy, "Czyli ogólnie podziękowania itd")
+    .addField("ab!creditsy", "Czyli ogólnie podziękowania itd")
     .addField("ab!propozycja <tekst>", "Zaproponuj coś do wykorzystania na serwerze, wymaga kanału #propozycje")
     .addField("ab!zapros", "Zapros mnie na twój serwer")
     .addField("lenny, "Coś fajnego ( ͡° ͜ʖ ͡°)")
