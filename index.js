@@ -45,13 +45,13 @@ bot.on("message", async message => {
 
   if(cmd === `${prefix}rzuc`){
     let osoba = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    let bicon = MessageEmbedImage.url("https://nyanyan.it/upload/202203_85dph9ny12kgso64ztfixaqj0luwbe73vrcm.gif")
     let embed = new Discord.RichEmbed()
     .setDescription("Wojna na poduszki")
     .setColor("#ffffff")
     .addField("Winowajca", osoba)
     .addField("Uderzający poduszką", message.author.username)
-    .addField("Ciekawe o co poszło", bicon)
+    .addField("Ciekawe o co poszło", ":)")
+    .setThumbnail("https://nyanyan.it/upload/202203_85dph9ny12kgso64ztfixaqj0luwbe73vrcm.gif")
     message.channel.send(embed);
   }
 
