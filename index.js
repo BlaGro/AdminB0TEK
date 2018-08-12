@@ -14,7 +14,7 @@ fs.readdir("./commands/", (err, files) => {
     console.log("Nie znaleziono komend")
     return;
   }
-  
+
   jsfile.forEach((f, i) =>{
     let props = require(`./commands/${f}`);
     console.log(`Załadowano ${f}`);
@@ -41,20 +41,24 @@ bot.on("message", async message => {
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if(commandfile) commandfile.run(bot,message,args);
 
+  if(cmd === `${prefix}`)
+
   if(cmd === `${prefix}rzuc`){
     let osoba = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    let bicon = MessageEmbedImage.url("https://nyanyan.it/upload/202203_85dph9ny12kgso64ztfixaqj0luwbe73vrcm.gif")
     let embed = new Discord.RichEmbed()
     .setDescription("Wojna na poduszki")
     .setColor("#ffffff")
     .addField("Winowajca", osoba)
     .addField("Uderzający poduszką", message.author.username)
+    .addField("Hmm", "Ciekawe o co poszło", bicon)
     message.channel.send(embed);
   }
-  
+
   if(message.content === "Głosowanie"){
     message.react("✅").then(message.react("❌"))
   }
-    
+
   if(cmd === "lenny"){
     return message.channel.send("( ͡° ͜ʖ ͡°)")
   }
@@ -164,15 +168,15 @@ bot.on("message", async message => {
     .addField("...", "Sam zobaczysz o co chodzi")
     .addField("jaki kozak", "Sam zobaczysz")
     .addField("lol", "Świetnie sie bawisz?")
-    .addField("ab!creditsy", "Czyli ogólnie podziękowania itd")
+    .addField("ab!creditsy, "Czyli ogólnie podziękowania itd")
     .addField("ab!propozycja <tekst>", "Zaproponuj coś do wykorzystania na serwerze, wymaga kanału #propozycje")
     .addField("ab!zapros", "Zapros mnie na twój serwer")
-    .addField("lenny", "Coś fajnego ( ͡° ͜ʖ ͡°)")
+    .addField("lenny, "Coś fajnego ( ͡° ͜ʖ ͡°)")
     .addField("Reszta wkrótce :)", "C:")
     message.author.send(embed);
     return message.channel.send("Wysłano liste komend na prywatną wiadomość")
   }
-  
+
   if(cmd === `${prefix}powiedz`){
 
     const sayMessage = args.join(" ");
