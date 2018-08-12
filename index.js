@@ -150,29 +150,29 @@ bot.on("message", async message => {
 
   if(cmd === `${prefix}pomoc`){
 
-    let embed = new Discord.RichEmbed()
+  let embed = new Discord.RichEmbed()
     .setDescription("Komendy")
     .setColor("#26ff0")
-    .addField("ab!powiedz <tekst> - Powiedz coś botem")
-    .addField("ab!report <gracz> <powód> - Zgłoś złamanie regulaminu, wymaga kanału #zgloszenia")
-    .addField("Cześć - Bot ci odpowiada")
-    .addField("ab!bot - Info o bocie")
-    .addField("ab!witam - Witasz sie z botem")
-    .addField("ab!serwer - Info o serwerze")
-    .addField("Ty no nie wiem - Bot dokańcza za ciebie")
-    .addField("xd - Bot cie uczy jak pisać słowo xd")
-    .addField("... - Sam zobaczysz o co chodzi")
-    .addField("jaki kozak - Sam zobaczysz")
-    .addField("lol - Świetnie sie bawisz?")
-    .addField("ab!creditsy - Czyli ogólnie podziękowania itd")
-    .addField("ab!propozycja <tekst> - Zaproponuj coś do wykorzystania na serwerze, wymaga kanału #propozycje")
-    .addField("ab!zapros - Zapros mnie na twój serwer")
-    .addField("lenny - Coś fajnego ( ͡° ͜ʖ ͡°)")
-    .addField("Reszta wkrótce :)")
+    .addField("ab!powiedz <tekst>", "Powiedz coś botem")
+    .addField("ab!report <gracz> <powód>", "Zgłoś złamanie regulaminu, wymaga kanału #zgloszenia")
+    .addField("Cześć", "Bot ci odpowiada" )
+    .addField("ab!bot", "Info o bocie")
+    .addField("ab!witam", "Witasz sie z botem")
+    .addField("ab!serwer", "Info o serwerze")
+    .addField("Ty no nie wiem", "Bot dokańcza za ciebie")
+    .addField("xd", "Bot cie uczy jak pisać słowo xd")
+    .addField("...", "Sam zobaczysz o co chodzi")
+    .addField("jaki kozak", "Sam zobaczysz")
+    .addField("lol", "Świetnie sie bawisz?")
+    .addField("ab!creditsy, "Czyli ogólnie podziękowania itd")
+    .addField("ab!propozycja <tekst>", "Zaproponuj coś do wykorzystania na serwerze, wymaga kanału #propozycje")
+    .addField("ab!zapros", "Zapros mnie na twój serwer")
+    .addField("lenny, "Coś fajnego ( ͡° ͜ʖ ͡°)")
+    .addField("Reszta wkrótce :)", "C:")
     message.author.send(embed);
     return message.channel.send("Wysłano liste komend na prywatną wiadomość")
   }
-
+  
   if(cmd === `${prefix}powiedz`){
 
     const sayMessage = args.join(" ");
