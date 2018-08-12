@@ -49,7 +49,6 @@ bot.on("message", async message => {
     .addField("Winowajca", osoba)
     .addField("Uderzający poduszką", message.author.username)
     message.channel.send(embed);
-    return message.channel.send("**Ciekawe za co dostał poduszką** :thinking:", {files: ["https://nyanyan.it/upload/202203_85dph9ny12kgso64ztfixaqj0luwbe73vrcm.gif"]})
   }
   
   if(message.content === "Głosowanie"){
