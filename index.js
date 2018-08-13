@@ -206,24 +206,6 @@ bot.on("message", async message => {
     message.channel.send(embed);
   }
 
-  if(cmd === `${prefix}serwer`){
-
-    let embed = new Discord.RichEmbed()
-    .setDescription("Info o serwerze")
-    .setColor("#5e0372")
-    .addField("Właściciel", message.guild.owner)
-    .addField("Ilość użytkowników", message.guild.memberCount)
-    .addField("Serwer", message.guild.name)
-    .addField("Region", message.guild.region)
-    .addField("Lewel weryfikacji", message.guild.verificationLevel)
-    .addField("Pozycja", message.guild.position || "Nie została określona")
-    .addField("Kanał AFK", message.guild.afkChannel || "Brak")
-    .addField("Rola domyślna", message.guild.defaultRole)
-    .addField("Ikonka", message.guild.icon || "Brak")
-    .addField("Domyślny kanał", message.guild.deafaultChannel || "Brak")
-    message.channel.send(embed);
-  }
-
   if(cmd === "Cześć"){
     return message.channel.send("Witaj");
   }
