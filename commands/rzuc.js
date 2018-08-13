@@ -11,6 +11,7 @@ module.exports.run = async(bot, message, args) => {
   .setImage.url("https://nyanyan.it/upload/202203_85dph9ny12kgso64ztfixaqj0luwbe73vrcm.gif")
   message.channel.send(embed);
 }
+
 module.exports.help = {
   name:"rzuc"
 }
