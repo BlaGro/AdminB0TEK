@@ -5,7 +5,7 @@ module.exports.run =  async(bot, message, args) => {
   let osoba = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   let embed = new Discord.RichEmbed()
   .setDescription("Twój avatar")
-  .setImage(avatar.osoba)
+  .setImage(osoba.avatar)
   message.channel.send(embed);
 }
 
