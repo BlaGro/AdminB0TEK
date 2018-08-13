@@ -160,24 +160,6 @@ bot.on("message", async message => {
     return;
   }
 
-  if(cmd === `${prefix}uzytkownik`){
-
-    let embed = new Discord.RichEmbed()
-    .setDescription("Info o użytkowniku")
-    .setColor("#5b749b")
-    .addField("Nazwa użytkownika", message.author.username)
-    .addField("Czy jest botem", message.author.bot)
-    .addField("Tag", message.author.tag || "Nie")
-    .addField("ID", message.author.id)
-    .addField("ID ostatniej wiadomości", message.author.lastMessageID)
-    .addField("Awatar", message.author.avatar)
-    .addField("Discriminator", message.author.discriminator)
-    .addField("Timestamp", message.author.createdTimestamp)
-    .addField("Kanał DM", message.author.dmChannel || "Brak")
-    .addField("Notatka", message.author.note || "Brak")
-    message.channel.send(embed);
-  }
-
   if(cmd === "Cześć"){
     return message.channel.send("Witaj");
   }
