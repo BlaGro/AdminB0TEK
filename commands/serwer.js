@@ -12,8 +12,8 @@ module.exports.run = async(bot, message, args) => {
   .addField("Region", message.guild.region)
   .addField("Lewel weryfikacji", message.guild.verificationLevel)
   .addField("Kanał AFK", message.guild.afkChannel || "Brak")
-  .addField("Rola domyślna", message.guild.deafaultRole)
-  .addField("Domyślny kanał", message.guild.deafaultChannel)
+  .addField("Rola domyślna", message.guild.deafaultRole || "Brak")
+  .addField("Domyślny kanał", message.guild.deafaultChannel || "Brak")
   message.channel.send(embed);
 }
 
