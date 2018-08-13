@@ -8,7 +8,7 @@ module.exports.run = async(bot, message, args) => {
   .addField("Winowajca", osoba)
   .addField("Uderzający poduszką", message.author.username)
   .addField("Ciekawe o co poszło", ":)")
-  .setImage.url("https://nyanyan.it/upload/202203_85dph9ny12kgso64ztfixaqj0luwbe73vrcm.gif")
+  .setImage("https://nyanyan.it/upload/202203_85dph9ny12kgso64ztfixaqj0luwbe73vrcm.gif")
   message.channel.send(embed);
 }
 
