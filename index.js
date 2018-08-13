@@ -41,20 +41,6 @@ bot.on("message", async message => {
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if(commandfile) commandfile.run(bot,message,args);
 
-  if(cmd === `${prefix}`)
-
-  if(cmd === `${prefix}rzuc`){
-    let osoba = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    let embed = new Discord.RichEmbed()
-    .setDescription("Wojna na poduszki")
-    .setColor("#ffffff")
-    .addField("Winowajca", osoba)
-    .addField("Uderzający poduszką", message.author.username)
-    .addField("Ciekawe o co poszło", ":)")
-    .setThumbnail("https://nyanyan.it/upload/202203_85dph9ny12kgso64ztfixaqj0luwbe73vrcm.gif")
-    message.channel.send(embed);
-  }
-
   if(message.content === "Głosowanie"){
     message.react("✅").then(message.react("❌"))
   }
