@@ -7,7 +7,7 @@ module.exports.run = async(bot, message, args) => {
     m.edit(`Pong! Twój aktualny ping wynosi ${Date.now() - then}ms wysyłanych wiadomości \nDiscord HeartBeat: ${bot.ping}ms`);
   });
 
-};
+}
 module.exports.help = {
   name: "ping"
-};
+}
