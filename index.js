@@ -172,6 +172,9 @@ bot.on("message", async message => {
     .addField("ab!propozycja <tekst>", "Zaproponuj coś do wykorzystania na serwerze, wymaga kanału #propozycje")
     .addField("ab!zapros", "Zapros mnie na twój serwer")
     .addField("lenny", "Coś fajnego ( ͡° ͜ʖ ͡°)")
+    .addField("ab!ping", "Sprawdź swój ping")
+    .addField("ab!clear <od 1 do 100>", "Usuń podaną ilość wiadomości")
+    .addField("ab!poll <tekst>", "Stwórz ankiete")
     .addField("Reszta wkrótce :)", "C:")
     message.author.send(embed);
     return message.channel.send("Wysłano liste komend na prywatną wiadomość")
