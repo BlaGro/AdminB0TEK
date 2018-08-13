@@ -193,23 +193,6 @@ bot.on("message", async message => {
     return message.channel.send("No cześć!");
   }
 
-  if(cmd === `${prefix}bot`){
-
-    let bicon = bot.user.displayAvatarURL;
-    let botembed = new Discord.RichEmbed()
-    .setDescription("Info o bocie")
-    .setColor("#0061ff")
-    .setThumbnail(bicon)
-    .addField("Nazwa bota", bot.user.username)
-    .addField("Stworzony", bot.user.createdAt)
-    .addField("Id bota", bot.user.id)
-    .addField("Tag bota", bot.user.tag)
-    .addField("Ostatnia wiadomość", bot.user.lastMessage || "Brak ostatniej wiadomości")
-    .addField("Timestamp", bot.user.createdTimestamp || "Brak");
-
-    return message.channel.send(botembed);
-  }
-
 });
 
 bot.login(process.env.BOT_TOKEN)
