@@ -6,6 +6,7 @@ module.exports.run = async(bot, message, args) => {
   .setDescription("Ikonka serwera V")
   .setColor("#f44242")
   .setImage(ikona)
+  message.channel.send(embed);
 }
 
 module.exports.help = {
