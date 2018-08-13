@@ -23,6 +23,7 @@ module.exports.run = async(bot, message, args) => {
   .addField("ab!clear <od 1 do 100>", "Usuń podaną ilość wiadomości")
   .addField("ab!poll <tekst>", "Stwórz ankiete")
   .addField("ab!awatar", "Pokazuje twój awatar")
+  .addField("ab!ikona-serwera", "Pokazuje ikonke/avatar serwera")
   .addField("Reszta wkrótce :)", "C:")
   message.author.send(embed);
   return message.channel.send(`${message.author.username} wysłano liste komend na prywatną wiadomość`)
