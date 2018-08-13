@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 
 module.exports.run = async(bot, message, args) => {
+  let ikonka = message.guild.iconURL
   let embed = new Discord.RichEmbed()
-  let ikonka = message.guild.iconURL;
   .setDescription("Info o serwerze")
   .setColor("#4286f4")
   .setThumbnail(ikonka)
