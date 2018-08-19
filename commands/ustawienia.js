@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 
 module.exports.run = async(bot, message, args) => {
-  let bot = bot.user.avatarURL;
   let embed = new Discord.RichEmbed()
   .setDescription("Ustawienia")
   .setColor("#042966")
