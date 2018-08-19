@@ -15,3 +15,7 @@ module.exports.run = async(bot, message, args) => {
     .catch(console.error);
     return;
   }, 5000)
+}
+module.exports.help = {
+  name:"kolorki"
+}
