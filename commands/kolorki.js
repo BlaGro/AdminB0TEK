@@ -2,9 +2,8 @@ const Discord = require("discord.js");
 
 module.exports.run = async(bot, message, args) => {
   let role = message.mentions.roles.first() || message.guild.roles.get(args[0]);
+  if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send("No can do pal!");
   const time = setInterval(function() {
-    if(guild.member.hasPermission("MANAGE_ROLES"))
-    role.setColor("#83f442")
     .then(updated => console.log(`Zmieniono kolor rangi na ${role.color}`))
     .catch(console.error);
     role.setColor("#f28b41")
