@@ -1,14 +1,15 @@
 const Discord = require("discord.js");
 
 module.exports.run = async(bot, message, args) => {
-  let bot = bot.user.avatarURL;
-  let embed = new Discord.RichEmbed()
-  .setDescription("Ustawienia")
-  .setColor("#042966")
-  .setThumbnail(bot)
-  .addField("Komendy ustawień V", "Pewnie są jakieś (^.^)")
-  .addField("ab!timer <tekst>", "Ustaw timer z tekstem jaki ma pisać bot (pisze co 5 minut :)")
+  const time = setInterval(function() {
+    let powod = args.join(" ")
+    let embed = new Discord.RichEmbed()
+    .setDescription("Timer")
+    .setThumbnail("https://c.mql5.com/31/27/auto-close-timer-ultimate-logo-200x200-7466.png")
+    .addField(`${powod}`)
+    message.channel.send(embed);
+  }, 50000);
 }
 module.exports.help = {
-  name:"ustawienia"
+  name:"timer"
 }
