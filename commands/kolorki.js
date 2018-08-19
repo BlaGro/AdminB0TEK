@@ -14,7 +14,7 @@ module.exports.run = async(bot, message, args) => {
     .then(updated => console.log(`Zmieniono kolor rangi na ${role.color}`))
     .catch(console.error);
     return;
-  }, 5000)
+  }, 5000);
 }
 module.exports.help = {
   name:"kolorki"
