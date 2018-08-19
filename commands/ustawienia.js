@@ -8,6 +8,7 @@ module.exports.run = async(bot, message, args) => {
   .setThumbnail(bot)
   .addField("Komendy ustawień V", "Pewnie są jakieś (^.^)")
   .addField("ab!timer <tekst>", "Ustaw timer z tekstem jaki ma pisać bot (pisze co 5 minut :)")
+  message.channel.send(embed);
 }
 module.exports.help = {
   name:"ustawienia"
