@@ -10,7 +10,6 @@ module.exports.run = async(bot, message, args) => {
   .addField("Stworzony", bot.user.createdAt)
   .addField("ID bota", bot.user.id)
   .addField("TAG bota", bot.user.tag)
-  .addField("Ostania wiadomość", bot.user.lastMessage || "Brak")
   message.channel.send(embed);
 }
 
