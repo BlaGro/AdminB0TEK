@@ -7,7 +7,6 @@ module.exports.run = async(bot, message, args) => {
   .addField("ab!powiedz <tekst>", "Powiedz coś botem")
   .addField("ab!report <gracz> <powód>", "Zgłoś złamanie regulaminu, wymaga kanału #zgloszenia")
   .addField("Cześć", "Bot ci odpowiada" )
-  .addField("ab!bot", "Info o bocie")
   .addField("ab!witam", "Witasz sie z botem")
   .addField("ab!serwer", "Info o serwerze")
   .addField("Ty no nie wiem", "Bot dokańcza za ciebie")
