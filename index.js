@@ -40,6 +40,10 @@ bot.on("message", async message => {
 
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if(commandfile) commandfile.run(bot,message,args);
+  
+  if(message.content === "aha" || "Aha"){
+    message.channel.send("To brzydko o Asi :smile:")
+  }
 
   if(message.content === "Głosowanie"){
     message.react("✅").then(message.react("❌"))
