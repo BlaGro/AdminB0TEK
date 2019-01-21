@@ -5,6 +5,7 @@ module.exports.run = async(bot, message, args) =>{
   var opcje = odpowiedzi[Math.floor(Math.random()*odpowiedzi.length)];
   let embed = new Discord.RichEmbed()
   .addField("wylosowana liczba", `${opcje}`)
+  message.channel.send(embed);
 }
 
 module.exports.help = {
