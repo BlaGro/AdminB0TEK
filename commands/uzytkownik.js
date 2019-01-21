@@ -5,6 +5,7 @@ module.exports.run = async(bot, message, args) => {
   let embed = new Discord.RichEmbed()
   .setDescription(`Info o użytkowniku ${message.author.username}`)
   .setColor("#f4e242")
+  .setAuthor(`${message.author.username}`, `${message.author.avatarURL}`)
   .addField("Nazwa użytkownika", message.author.username)
   .addField("Czy jest botem", message.author.bot || "Nie wiadomo")
   .addField("TAG", message.author.tag)
